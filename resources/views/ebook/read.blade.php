@@ -1,0 +1,115 @@
+<x-home.layout>
+    <div class="container mt-5">
+        <div class="ebook card m-auto shadow bg-body-tertiary border rounded">
+            <div class="row mt-1 m-3 p-3">
+                <div class="col-4 mt-5">
+                    <img src="{{ asset('/storage/Ebook/cover/' . $ebook->cover) }}"
+                    class="img-fluid rounded" alt="cover-image" />
+                    <div class="mt-5 author">
+                        <div class="row">
+                            <div class="col-3 icon">
+                                <img
+                                    src="{{ asset('images/writer.png') }}"
+                                    class="img-fluid rounded-top"
+                                    alt="author"
+                                />
+                            </div>
+                            <div class="col-9 author-name mt-3">
+                                <p class="fw-bold">
+                                    {{ ucwords( $ebook->author->name ) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="row m-2">
+                        <div class="back col-6">
+                            <a href="{{ redirect()->getUrlGenerator()->previous() }}" class="text-dark fw-bold"
+                                style="text-decoration: none;">
+                                < Go Back to ebooks </a>
+                        </div>
+                            {{-- <div class="category text-end col-6">
+                                <small class="fw-bold text-danger p-1 border border-danger rounded">
+                                    {{ $ebook->category }} </small>
+                            </div> --}}
+                    </div>
+                    <div class="details m-2">
+                        <div class="title m-3">
+                            <h3 class="fw-bold">{{ ucwords($ebook->title) }}</h3>
+                        </div>
+                        <div class="description m-3">
+                            <p>
+                                {{ $ebook->description }}
+                            </p>
+                        </div>
+                        <!-- ebook pdf view -->
+                        <div class="ebook m-3 border rounded border-secondry">
+                        <embed src="{{ asset('storage/Ebook/book/' . $ebook->ebook) }}" type="application/pdf" width="100%" height="400px" class="rounded" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <!-- add comment -->
+            <div class="addComment col-6">
+                <div class="addComment me-0 p-3 shadow border rounded">
+                    {{-- add comment --}}
+                    <h5>Add comment</h5>
+                    <form action="{{ route('ebook.comment', $ebook->id) }}" method="post">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-9">
+                                <div>
+                                    <textarea class="form-control" name="comment" id="comment" placeholder="Add comment..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="submit text-end ">
+                                    <button type="submit" class="btn btn-sm btn-dark">
+                                        Post
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- show comments -->
+            @if (count($ebook->comments))
+            <div class="col-6">
+                <div class="showComments">
+                    <p class="fw-bold">
+                        Previous Comments
+                    </p>
+                        @foreach ($ebook->comments as $comment)
+                            <div class="cmt p-3 border shadow rounded">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="commentTest m-2 p-2">
+                                      {{ $comment->content }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                      <div class="author m-2 p-2">
+                                        <i class="fa-solid fa-circle-user "></i>
+                                        {{ $comment->author->name }}
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</x-home.layout>
