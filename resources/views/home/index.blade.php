@@ -1,6 +1,7 @@
 <x-home.layout>
     <!-- home page-->
 <h5>Tesing GIT merging with conflict</h5>
+<h5>Tesing GIT </h5>
 <!-- showing the blog posts -->
     <div class="container mt-5">
         <div class="posts m-3">
