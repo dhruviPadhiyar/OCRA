@@ -2,7 +2,6 @@
     <!-- home page-->
 
 <!-- showing the blog posts -->
-    <h5>Testing the GitHub branch</h5>
     <div class="container mt-5">
         <div class="posts m-3">
             <div class="row m-3">
