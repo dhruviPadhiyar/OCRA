@@ -2,21 +2,24 @@
     <!-- create blog post -->
 
     <!-- main div container -->
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
 
-        <div class="row ">
-            <div class="col-6">
+        <div class="row m-5 mt-4 p-4">
+            <div class="col-5">
                 {{-- image --}}
-                {{-- <img src="{{ asset('images/7-1.png') }}" class="img-fluid" alt=""> --}}
-                <img src="{{ asset('images/a.svg') }}" class="img-fluid" alt="" srcset="">
+                <img src="{{ asset('images/pst2.svg') }}" class="img-fluid" alt="" srcset="">
             </div>
-            <div class="col-6">
+            <div class="col-7">
                 <div class="shadow rounded p-4 bg-body-tertiary">
                     <div class="heading">
-                        <h4>Create Post</h4>
+                        <h4 class="fw-bold ft">Create Post
+                            <span class="m-3">
+                                <i class="fa-solid fa-feather ft"></i>
+                            </span>
+                        </h4>
                     </div>
                     <!-- create post form -->
-                    {{-- <input type="hidden" name="id" value="{{  }}"> --}}
+
 
                     <form action="{{ route('post.save') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -38,27 +41,35 @@
 
                         <div class="mb-3">
                             <label for="body" class="form-label">Body</label>
-                            <textarea class="form-control" name="body" id="body" placeholder="Post Body" required></textarea>
+                            <textarea class="form-control" name="body" id="body" rows="8" placeholder="Write your post" required></textarea>
                         </div>
 
-                        <!-- category -->
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Category</label>
-                            <select class="form-select form-select-sm" name="category" id="category">
-                                <option value="" selected disabled>Select Category</option>
-                                @foreach (\App\Models\Post::$categories as $category)
-                                    <option value="{{ $category }}">{{ $category }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- thumbnail -->
-                        <div class="mb-3">
-                            <label for="thumbnail" class="form-label">Thumbnail</label>
-                            <div class="custom-file border p-2">
-                                <input type="file" class="custom-file-input form-input" id="thumbnail" name="thumbnail" />
+                        <div class="row">
+                            <div class="col-6">
+                                <!-- category -->
+                                <div>
+                                    <label for="category" class="form-label">Category</label>
+                                    <select class="form-select form-select-sm" name="category" id="category">
+                                        <option value="" selected disabled>Select Category</option>
+                                        @foreach (\App\Models\Post::$categories as $category)
+                                            <option value="{{ $category }}">{{ $category }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- thumbnail -->
+                                <div>
+                                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                                    <div class="custom-file border p-2">
+                                        <input type="file" class="custom-file-input form-input" id="thumbnail"
+                                            name="thumbnail" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
 
                         <div class="text-end mt-4 ">
                             <button type="submit" class="btn btn-sm btn-primary">

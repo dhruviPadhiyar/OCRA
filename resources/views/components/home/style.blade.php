@@ -8,6 +8,10 @@
         text-align: center;
     }
 
+    .ft:hover{
+        color: #0d6efd;
+    }
+
     /* .heading {
         font-weight: bold;
     } */
